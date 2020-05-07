@@ -17,6 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin/dashboard', function () {
-    return view('admin/dashboard/index');
-});
+// Route::get('/admin/dashboard', function () {
+//     return view('admin/dashboard/index');
+// });
+
+Route::get('/admin/dashboard', 'Admin\DashboardController@show');
+Route::get('/admin/users', 'Admin\UserController@show');
+Route::get('/admin/add-user', 'Admin\UserController@add');
+Route::post('/admin/insert-user', 'Admin\UserController@insert');

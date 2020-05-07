@@ -1,5 +1,6 @@
 <?php echo $__env->make('admin.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
+
 	<!-- Content Wrapper. Contains page content -->
 	<div class="content-wrapper">
 	  <!-- Content Header (Page header) -->
@@ -19,6 +20,11 @@
 	    </div><!-- /.container-fluid -->
 	  </div>
 	  <!-- /.content-header -->
+
+	  <!-- <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+	     <?php echo e($user); ?>
+
+	  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> -->
 
 	  <!-- Main content -->
 	  <section class="content">
