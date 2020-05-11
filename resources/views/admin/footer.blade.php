@@ -44,5 +44,6 @@
 <script src="{{URL::to('/')}}/public/assets/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{URL::to('/')}}/public/assets/dist/js/demo.js"></script>
+
 </body>
 </html>

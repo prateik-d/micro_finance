@@ -105,7 +105,15 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Marital Status</label>
-                                        <input type="text" class="form-control" placeholder="Marital Status" id="marital_status" name="marital_status">
+                                        <!-- <input type="text" class="form-control" placeholder="Marital Status" id="marital_status" name="marital_status"> -->
+                                        <select class="form-control" placeholder="Marital Status" id="marital_status" name="marital_status">
+                                            <option value="" selected="selected" disabled="disabled">Select Marital Status</option>
+                                            <option value="Married">Married</option>
+                                            <option value="Unmarried">Unmarried</option>
+                                            <option value="Separated">Separated</option>
+                                            <option value="Divorced">Divorced</option>
+                                            <option value="Others">Others</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -121,7 +129,16 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Employment Type</label>
-                                        <input type="text" class="form-control" placeholder="Employment Type" id="emp_type" name="emp_type">
+                                        <!-- <input type="text" class="form-control" placeholder="Employment Type" id="emp_type" name="emp_type"> -->
+                                        <select class="form-control" placeholder="Employment Type" id="emp_type" name="emp_type">
+                                            <option value="" selected="selected" disabled="disabled">Select Employment Type</option>
+                                            <option value="Permanent or fixed-term employees">Permanent or fixed-term employees</option>
+                                            <option value="Casual employees">Casual employees</option>
+                                            <option value="Apprentices or trainees">Apprentices or trainees</option>
+                                            <option value="Employment agency staff">Employment agency staff</option>
+                                            <option value="Contractors and sub-contractors">Contractors and sub-contractors</option>
+                                            <option value="Others">Others</option>
+                                        </select>
                                     </div>
                                 </div>
 
@@ -242,6 +259,94 @@
                             </div>
 
                             <hr />
+
+                            <div class="row">
+
+                                <div class="col-md-12">
+                                    <h3>Bank Information</h3>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Bank Name</label>
+                                        <input type="text" class="form-control" placeholder="Bank Name" id="bank_name" name="bank_name">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Bank Branch</label>
+                                        <input type="text" class="form-control" placeholder="Bank Branch" id="bank_branch" name="bank_branch">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Bank Address</label>
+                                        <textarea class="form-control" placeholder="Bank Address" id="bank_address" name="bank_address"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Account Number</label>
+                                        <input type="text" class="form-control" placeholder="Account Number" id="account_number" name="account_number">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Bank Account Name</label>
+                                        <input type="text" class="form-control" placeholder="Bank Account Name" id="bank_account_name" name="bank_account_name">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Bank Account Type</label>
+                                        <!-- <input type="text" class="form-control" placeholder="Bank Account Type" id="bank_account_type" name="bank_account_type"> -->
+                                        <select class="form-control" placeholder="Bank Account Type" id="bank_account_type" name="bank_account_type">
+                                            <option value="" selected="selected" disabled="disabled">Select Bank Account Type</option>
+                                            <option value="Saving Account">Saving Account</option>
+                                            <option value="Current Account">Current Account</option>
+                                            <option value="Recurring Deposit Account">Recurring Deposit Account</option>
+                                            <option value="Fixed Deposit Account">Fixed Deposit Account</option>
+                                            <option value="DEMAT Account">DEMAT Account</option>
+                                            <option value="NRI Account">NRI Account</option>
+                                            <option value="Others">Others</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>IFSC</label>
+                                        <input type="text" class="form-control" placeholder="IFSC" id="ifsc" name="ifsc">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr />
+
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+
+                                            <label>User Enabled ?</label>
+                                            <div class="col-md-12">
+                                                Enabled <input type="radio" class="" name="status" value="1">
+                                            </div>
+                                            <div class="col-md-12">
+                                                Not Enabled <input type="radio" class="" name="status" value="0">
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
 
                             <div class="">
                                 <div class="card-footer">

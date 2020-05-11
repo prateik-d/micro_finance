@@ -9,6 +9,11 @@ use App\Models\Users;
 
 class DashboardController extends Controller
 {
+	public function login()
+	{
+		return view('admin.login.index');		
+	}
+
     public function show()
     {
     	$users = Users::get();
