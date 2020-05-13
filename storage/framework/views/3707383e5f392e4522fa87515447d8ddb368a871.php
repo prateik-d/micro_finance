@@ -1,6 +1,6 @@
 <?php echo $__env->make('admin.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-
+	
 	<!-- Content Wrapper. Contains page content -->
 	<div class="content-wrapper">
 	  <!-- Content Header (Page header) -->
@@ -19,6 +19,8 @@
 	      </div><!-- /.row -->
 	    </div><!-- /.container-fluid -->
 	  </div>
+
+
 	  <!-- /.content-header -->
 
 	  <!-- <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -97,5 +99,5 @@
 	  <!-- /.content -->
 	</div>
 
-<?php echo $__env->make('admin.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php echo $__env->make('admin.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php /**PATH /var/www/html/micro_finance/resources/views/admin/dashboard/index.blade.php ENDPATH**/ ?>

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 use App\Models\Users;
+use Session;
+use Illuminate\Support\Facades\Redirect;
 
 use Hash;
 
@@ -13,125 +15,162 @@ use Hash;
 
 class UserController extends Controller
 {
+
+    public function __construct()
+    {
+        if ( ! auth()->check()) 
+        // if((Session::get('admin')) != 'admin' )
+        {
+            return Redirect::to('/admin/');   
+        }
+    }
+
     public function show()
     {
-    	$users = Users::get();
+        if(Session::get('admin') )
+        {
+        	$users = Users::get();
 
-    	// dd($users);
-
-        return view('admin.users.list', compact('users'));
+            return view('admin.users.list', compact('users'));
+        }
+        else
+        {
+            return Redirect::to('/admin/');
+        }
     }
 
     public function add()
     {
-		return view('admin.users.add-user');
+        if(Session::get('admin') )
+        {
+		    return view('admin.users.add-user');
+        }
+        else
+        {
+            return Redirect::to('/admin/');
+        }
     }
 
     public function insert(Request $request)
     {
 
-    	// dd($request->all());
+        if(Session::get('admin') )
+        {
 
-    	// exit;
+        	// dd($request->all());
 
-	    $user = new Users;
+        	// exit;
 
-	    $user->name 					= $request->name;
-	    $user->address 					= $request->address;
-	    $user->email 					= $request->email;
-	    $user->phone 					= $request->phone;
-	    $user->education 				= $request->education;
-	    $user->marital_status 			= $request->marital_status;
-	    $user->dob			 			= $request->dob_;
-	    $user->emp_type			 		= $request->emp_type;
-	    $user->monthly_income			= $request->monthly_income;
-	    $user->working_since			= $request->working_since;
-	    $user->company_name				= $request->company_name;
-	    $user->company_address			= $request->company_address;
-	    $user->company_phone			= $request->company_phone;
-	    $user->ref1_name				= $request->ref1_name;
-	    $user->ref1_phone				= $request->ref1_phone;
-	    $user->ref1_address				= $request->ref1_address;
-	    $user->ref2_name				= $request->ref2_name;
-	    $user->ref2_phone				= $request->ref2_phone;
-	    $user->ref2_address				= $request->ref2_address;
-	    $user->urgent_contact_name		= $request->urgent_contact_name;
-	    $user->urgent_contact_phone		= $request->urgent_contact_phone;
-	    $user->urgent_contact_address	= $request->urgent_contact_address;
-	    $user->bank_name			 	= $request->bank_name;
-	    $user->bank_branch			 	= $request->bank_branch;
-	    $user->bank_address			 	= $request->bank_address;
-	    $user->account_number			= $request->account_number;
-	    $user->bank_account_name		= $request->bank_account_name;
-	    $user->bank_account_type		= $request->bank_account_type;
-	    $user->ifsc			 			= $request->ifsc;
-	    $user->status			 		= $request->status;
-	    $user->password					= app('hash')->make('123456s');
+    	    $user = new Users;
+
+    	    $user->name 					= $request->name;
+    	    $user->address 					= $request->address;
+    	    $user->email 					= $request->email;
+    	    $user->phone 					= $request->phone;
+    	    $user->education 				= $request->education;
+    	    $user->marital_status 			= $request->marital_status;
+    	    $user->dob			 			= $request->dob_;
+    	    $user->emp_type			 		= $request->emp_type;
+    	    $user->monthly_income			= $request->monthly_income;
+    	    $user->working_since			= $request->working_since;
+    	    $user->company_name				= $request->company_name;
+    	    $user->company_address			= $request->company_address;
+    	    $user->company_phone			= $request->company_phone;
+    	    $user->ref1_name				= $request->ref1_name;
+    	    $user->ref1_phone				= $request->ref1_phone;
+    	    $user->ref1_address				= $request->ref1_address;
+    	    $user->ref2_name				= $request->ref2_name;
+    	    $user->ref2_phone				= $request->ref2_phone;
+    	    $user->ref2_address				= $request->ref2_address;
+    	    $user->urgent_contact_name		= $request->urgent_contact_name;
+    	    $user->urgent_contact_phone		= $request->urgent_contact_phone;
+    	    $user->urgent_contact_address	= $request->urgent_contact_address;
+    	    $user->bank_name			 	= $request->bank_name;
+    	    $user->bank_branch			 	= $request->bank_branch;
+    	    $user->bank_address			 	= $request->bank_address;
+    	    $user->account_number			= $request->account_number;
+    	    $user->bank_account_name		= $request->bank_account_name;
+    	    $user->bank_account_type		= $request->bank_account_type;
+    	    $user->ifsc			 			= $request->ifsc;
+    	    $user->status			 		= $request->status;
+    	    $user->password					= app('hash')->make('123456');
 
 
-	    if ($request->hasFile('selfie')) 
-	    {
-		    if(isset($_FILES['selfie']) && $_FILES['selfie'] !='') {
-	            $file = $request->file('selfie');
-	            $selfie = time().rand(111, 999) . '.' . $file->getClientOriginalExtension();
-	            $request->file('selfie')->move(public_path("uploads"), $selfie);
+    	    if ($request->hasFile('selfie')) 
+    	    {
+    		    if(isset($_FILES['selfie']) && $_FILES['selfie'] !='') {
+    	            $file = $request->file('selfie');
+    	            $selfie = time().rand(111, 999) . '.' . $file->getClientOriginalExtension();
+    	            $request->file('selfie')->move(public_path("uploads"), $selfie);
 
-	            $user->selfie = $selfie;
-	        }
-	    }
+    	            $user->selfie = $selfie;
+    	        }
+    	    }
+            else
+            {
+                $user->selfie = '';
+            }
+
+    	    if ($request->hasFile('aadhar')) 
+    	    {
+    		    if(isset($_FILES['aadhar']) && $_FILES['aadhar'] !='') {
+    	            $file = $request->file('aadhar');
+    	            $aadhar = time().rand(111, 999) . '.' . $file->getClientOriginalExtension();
+    	            $request->file('aadhar')->move(public_path("uploads"), $aadhar);
+    	            
+    	            $user->aadhar_card = $aadhar;
+    	        }
+    	    }
+            else
+            {
+                $user->aadhar = '';
+            }
+
+    	    if ($request->hasFile('pan')) 
+    	    {
+    		    if(isset($_FILES['pan']) && $_FILES['pan'] !='') {
+    	            $file = $request->file('pan');
+    	            $pan = time().rand(111, 999) . '.' . $file->getClientOriginalExtension();
+    	            $request->file('pan')->move(public_path("uploads"), $pan);
+    	            
+    	            $user->pan_card = $pan;
+    	        }
+    	    }
+            else
+            {
+    	        $user->pan = '';
+            }
+
+            $user->save();
+
+            return $user;
+        }
         else
         {
-            $user->selfie = '';
+            return Redirect::to('/admin/');
         }
-
-	    if ($request->hasFile('aadhar')) 
-	    {
-		    if(isset($_FILES['aadhar']) && $_FILES['aadhar'] !='') {
-	            $file = $request->file('aadhar');
-	            $aadhar = time().rand(111, 999) . '.' . $file->getClientOriginalExtension();
-	            $request->file('aadhar')->move(public_path("uploads"), $aadhar);
-	            
-	            $user->aadhar_card = $aadhar;
-	        }
-	    }
-        else
-        {
-            $user->aadhar = '';
-        }
-
-	    if ($request->hasFile('pan')) 
-	    {
-		    if(isset($_FILES['pan']) && $_FILES['pan'] !='') {
-	            $file = $request->file('pan');
-	            $pan = time().rand(111, 999) . '.' . $file->getClientOriginalExtension();
-	            $request->file('pan')->move(public_path("uploads"), $pan);
-	            
-	            $user->pan_card = $pan;
-	        }
-	    }
-        else
-        {
-	        $user->pan = '';
-        }
-
-        $user->save();
-
-        return $user;
 
     }
 
     public function edit($id)
     {
-
-    	$user = Users::where('id', $id)->get();
-    	
-    	// dd($user);
-        return view('admin.users.edit-user', compact('user'));
+        if(Session::get('admin') )
+        {
+        	$user = Users::where('id', $id)->get();
+        	
+        	// dd($user);
+            return view('admin.users.edit-user', compact('user'));
+        }
+        else
+        {
+            return Redirect::to('/admin/');
+        }
     }
 
     public function update(Request $request)
     {
-    	// dd($request->id);
+    	if(Session::get('admin') )
+        {
 
     			$user = array(
     							'name' => $request->name, 
@@ -165,9 +204,6 @@ class UserController extends Controller
     							'ifsc' => $request->ifsc, 
     							'status' => $request->status
     						);
-
-    			// $user['test'] = 'tsee';
-
     	    	
     	    	
     		    if ($request->hasFile('selfie')) 
@@ -208,27 +244,30 @@ class UserController extends Controller
     		    }
 
 
-    	$affectedRows = Users::where("id", $request->id)->update($user);
-    	        // dd($user);
+            	$affectedRows = Users::where("id", $request->id)->update($user);
 
-    	return $user;
+            	return $user;
 
+        }
+        else
+        {
+            return Redirect::to('/admin/');
+        }
 
 
     }
 
     public function delete($id)
     {
-
-    	// dd($id);
-
-    	// exit();
-
-
-
-    	Users::where('id', $id)->delete();
-    	return redirect('admin/users');
-
+        if(Session::get('admin') )
+        {
+        	Users::where('id', $id)->delete();
+        	return redirect('admin/users');
+        }
+        else
+        {
+            return Redirect::to('/admin/');
+        }
 
     }
 }

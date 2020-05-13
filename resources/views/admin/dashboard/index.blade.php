@@ -1,6 +1,6 @@
 @include('admin.header')
 
-
+	
 	<!-- Content Wrapper. Contains page content -->
 	<div class="content-wrapper">
 	  <!-- Content Header (Page header) -->
@@ -19,6 +19,8 @@
 	      </div><!-- /.row -->
 	    </div><!-- /.container-fluid -->
 	  </div>
+
+
 	  <!-- /.content-header -->
 
 	  <!-- @foreach($users as $user)
