@@ -49,4 +49,26 @@ Route::group(['prefix' => 'admin'], function ($router) {
 	Route::get('change-password', 'Admin\DashboardController@change_password');
 	Route::post('change-password', 'Admin\DashboardController@change_password');
 
+	Route::get('loan-amount', 'Admin\LoanAmountController@show');
+	Route::get('add-loan-amount', 'Admin\LoanAmountController@add');
+	Route::post('add-loan-amount', 'Admin\LoanAmountController@add');
+	Route::delete('delete-loan-amount/{id}', 'Admin\LoanAmountController@delete')->name('delete.loan-amount');
+	Route::get('edit-loan-amount/{id}', 'Admin\LoanAmountController@edit');
+	Route::post('edit-loan-amount/', 'Admin\LoanAmountController@update');
+
+	Route::get('membership-package', 'Admin\MembershipPackageController@show');
+	Route::get('add-membership-package', 'Admin\MembershipPackageController@add');
+	Route::post('add-membership-package', 'Admin\MembershipPackageController@add');
+	Route::get('edit-membership-package/{id}', 'Admin\MembershipPackageController@edit');
+	Route::post('edit-membership-package/', 'Admin\MembershipPackageController@update');
+	Route::delete('delete-membership-package/{id}', 'Admin\MembershipPackageController@delete')->name('delete.membership-package');
+	
+	Route::get('loan-term-days', 'Admin\LoanTermsController@show');
+	Route::get('add-loan-term-days', 'Admin\LoanTermsController@add');
+	Route::post('add-loan-term-days', 'Admin\LoanTermsController@add');
+	Route::delete('delete-loan-term-days/{id}', 'Admin\LoanTermsController@delete')->name('delete.loan-term-days');
+	Route::get('edit-loan-term-days/{id}', 'Admin\LoanTermsController@edit');
+	Route::post('edit-loan-term-days/', 'Admin\LoanTermsController@update');
+
+
 });

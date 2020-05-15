@@ -78,9 +78,21 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="table.php" class="nav-link">
+                                    <a href="{{URL::to('/')}}/admin/loan-amount" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Table</p>
+                                        <p>Loan Amount</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{URL::to('/')}}/admin/membership-package" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Membership Package</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{URL::to('/')}}/admin/loan-term-days" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Loan Terms</p>
                                     </a>
                                 </li>
                             </ul>
