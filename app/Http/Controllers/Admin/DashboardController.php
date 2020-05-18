@@ -26,36 +26,36 @@ class DashboardController extends Controller
         {
             
 
-                $email = $request->email;
-                $password = $request->password;
+            $email = $request->email;
+            $password = $request->password;
 
-                $user = Admin::where('email', '=', $email)->first();
+            $user = Admin::where('email', '=', $email)->first();
 
-                // dd($email);
+            // dd($email);
 
-                if (!$user) 
-                {
-                   return redirect('admin')->withErrors(['Login Fail, Please check credential']);
-                }
+            if (!$user) 
+            {
+               return redirect('admin')->withErrors(['Login Fail, Please check credential']);
+            }
 
-                if (!Hash::check($password, $user->password)) 
-                {
-                   return redirect('admin')->withErrors(['Login Fail, Please check credential']);
-                }
-
-
-                Session::put(array
-                                    (
-                                        'admin_id'      => $user->id, 
-                                        'admin_name'    => $user->name, 
-                                        'admin_email'   => $user->email,
-                                        'admin'         => 'admin'
-
-                                    )
-                            );
+            if (!Hash::check($password, $user->password)) 
+            {
+               return redirect('admin')->withErrors(['Login Fail, Please check credential']);
+            }
 
 
-                return redirect('admin/dashboard');
+            Session::put(array
+                                (
+                                    'admin_id'      => $user->id, 
+                                    'admin_name'    => $user->name, 
+                                    'admin_email'   => $user->email,
+                                    'admin'         => 'admin'
+
+                                )
+                        );
+
+
+            return redirect('admin/dashboard');
             
         }
         else
@@ -70,6 +70,8 @@ class DashboardController extends Controller
         if(Session::get('admin'))
         {
         	$users = Users::get();
+
+            dd($users);
 
             return view('admin.dashboard.index', compact('users'));
         }
