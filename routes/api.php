@@ -14,6 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+
+Route::post('user/login','api\users\LoginController@index');
+Route::post('user/registration/get-otp','api\users\RegistrationController@get_otp');
+Route::post('user/registration/check-otp','api\users\RegistrationController@check_otp');
+
+Route::get('user/dashboard/personal-info/{id}','api\users\DashboardController@personal_info');
+Route::get('user/dashboard/employement-info/{id}','api\users\DashboardController@employement_info');
+Route::get('user/dashboard/reference-info/{id}','api\users\DashboardController@reference_info');
+Route::get('user/dashboard/bank-info/{id}','api\users\DashboardController@bank_info');
+Route::post('user/dashboard/reset-password','api\users\ProfileController@reset_password');
+
