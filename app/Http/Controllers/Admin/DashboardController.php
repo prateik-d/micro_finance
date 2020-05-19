@@ -71,7 +71,7 @@ class DashboardController extends Controller
         {
         	$users = Users::get();
 
-            dd($users);
+            // dd($users);
 
             return view('admin.dashboard.index', compact('users'));
         }
@@ -274,4 +274,5 @@ class DashboardController extends Controller
             return view('admin.forgot_password.change_password');
         }
     }
+
 }

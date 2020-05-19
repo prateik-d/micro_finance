@@ -40,8 +40,8 @@ class RegistrationController extends Controller
 
             $user = new Users;
 
-            $user->name         = $request->name;
-            $user->phone        = $request->mobile;
+            // $user->name         = $request->name;
+            // $user->phone        = $request->mobile;
             $user->email        = $request->email;
             $user->otp          = $otp;
             $user->password     = app('hash')->make('123456');

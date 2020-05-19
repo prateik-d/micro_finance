@@ -28,4 +28,12 @@ Route::get('user/dashboard/employement-info/{id}','api\users\DashboardController
 Route::get('user/dashboard/reference-info/{id}','api\users\DashboardController@reference_info');
 Route::get('user/dashboard/bank-info/{id}','api\users\DashboardController@bank_info');
 Route::post('user/dashboard/reset-password','api\users\ProfileController@reset_password');
+Route::get('user/dashboard/my-account/{id}','api\users\DashboardController@my_account');
+
+
+Route::post('user/account/add-personal-info','api\users\PersonalInfoController@add');
+Route::post('user/account/add-employment-info','api\users\EmploymentInfoController@add');
+Route::post('user/account/add-reference-info','api\users\ReferenceInfoController@add');
+Route::post('user/account/add-bank-info','api\users\BankInfoController@add');
+
 
