@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 use App\Models\Users;
+use App\Models\Loan;
 use Session;
 use DB;
 use Illuminate\Support\Facades\Redirect;
@@ -156,6 +157,48 @@ class DashboardController extends Controller
                         'user_bank_account_name'    => $user->bank_account_name,
                         'user_bank_account_type'    => $user->bank_account_type,
                         'user_ifsc'                 => $user->ifsc,
+                        'status'                    => '1',
+                        'message'                   => 'Data fetch successful'
+                    );
+        }
+    }
+
+    public function account_info($id)
+    {
+        $user = Users::where('id', '=', $id)->first();
+        $loan = Loan::where('user_id', '=', $id)->first();
+
+        if (!$user) 
+        {
+         
+            return array
+                            (
+                                'status'      => 0, 
+                                'message'    => 'Login Fail, Please check credential'
+                            );
+        }
+        else
+        {
+
+            return array
+                    (
+                        'user_id'                   => $user->id, 
+                        'user_name'                 => $user->name, 
+                        'user_email'                => $user->email,
+                        'user_bank_name'            => $user->bank_name,
+                        'user_bank_branch'          => $user->bank_branch,
+                        'user_bank_address'         => $user->bank_address,
+                        'user_account_number'       => $user->account_number,
+                        'user_bank_account_name'    => $user->bank_account_name,
+                        'user_bank_account_type'    => $user->bank_account_type,
+                        'user_ifsc'                 => $user->ifsc,
+                        'loan_amount'               => $loan->loan_amount,
+                        'interest'                  => $loan->interest,
+                        'paid_amount'               => $loan->paid_amount,
+                        'due_amount'                => $loan->due_amount,
+                        'loan_term_day'             => $loan->loan_term_day,
+                        'loan_date'                 => $loan->loan_date,
+                        'loan_status'               => $loan->loan_status,
                         'status'                    => '1',
                         'message'                   => 'Data fetch successful'
                     );
