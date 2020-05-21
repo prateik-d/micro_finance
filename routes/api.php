@@ -44,3 +44,7 @@ Route::get('user/show-loan-info/{id}','api\users\LoanController@show_');
 Route::get('user/show-account-info/{id}','api\users\DashboardController@account_info');
 
 
+
+Route::post('user/forgot-password/get-otp','api\users\RegistrationController@forgot_password');
+Route::post('user/forgot-password/check-otp','api\users\RegistrationController@check_otp');
+Route::post('user/forgot-password/reset-password','api\users\RegistrationController@reset_password');

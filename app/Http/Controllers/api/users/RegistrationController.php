@@ -51,13 +51,10 @@ class RegistrationController extends Controller
 
             $data = array('otp' => $otp, 'email' => $email );
 
-            
-            Mail::send('admin.emails.forgot_password', $data, function ($message) {
-            // Mail::send('users.emails.signup_otp.blade', $data, function ($message) {
-                $message->from('admin@microfinance.com','Micro finance');
-                $message->to('pratik.dhotmal@gmail.com');
-                // $message->to($email);
-                $message->subject('Get OTP for signing up.');
+            Mail::send('users.emails.signup_otp', ['data' => $data, 'otp' => $otp], function ($m) use ($data) {
+                $m->from('admin@microfinance.com','Micro finance');
+
+                $m->to($data['email'])->subject('Get OTP for signing up.');
             });
 
 
@@ -117,4 +114,78 @@ class RegistrationController extends Controller
         }
 
     }
+
+
+    public function forgot_password(Request $request)
+    {
+        if($_POST)
+        {
+            $email = $request->email;
+
+            $user=DB::table('users')->where('email',$email)->limit(1);
+
+            if($user)
+            {       
+
+                $otp = mt_rand(100000, 999999);
+
+                $data = array('otp' => $otp, 'email' => $request->email );
+
+                // dd($data['email']);
+
+                $user_email = $data['email'];
+
+
+                Mail::send('users.emails.reset_password', ['data' => $data, 'otp' => $otp], function ($m) use ($data) {
+                    $m->from('admin@syncredit.com','Micro finance');
+
+                    $m->to($data['email'])->subject('Get OTP for Reset password.');
+                });
+
+
+                $user->update(['otp'=>$otp]);
+
+                return  array('email' => $email, 'otp' => $otp);
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    public function reset_password(Request $request)
+    {
+        if($_POST)
+        {
+            $email = $request->email;
+            $npass = $request->npass;
+
+            // dd($npass);
+
+            $user=DB::table('users')->where('email',$email)->limit(1);
+
+            if($user)
+            {       
+                $enc_pass = app('hash')->make($npass);
+                
+                $user->update(['password'=>$enc_pass]);
+
+                return $npass;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
 }
