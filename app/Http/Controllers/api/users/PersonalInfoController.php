@@ -34,6 +34,7 @@ class PersonalInfoController extends Controller
 
             $user = array(
                             'name' => $request->name, 
+                            'email' => $request->email, 
                             'address' => $request->address, 
                             'phone' => $request->phone, 
                             'education' => $request->education, 

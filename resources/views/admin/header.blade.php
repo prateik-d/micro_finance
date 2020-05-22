@@ -95,6 +95,18 @@
                                         <p>Loan Terms</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{URL::to('/')}}/admin/subscription-membership" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Subscription Membership</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{URL::to('/')}}/admin/loan-inforation" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Loan Inforation</p>
+                                    </a>
+                                </li>
                             </ul>
                         </nav>
                     </div>

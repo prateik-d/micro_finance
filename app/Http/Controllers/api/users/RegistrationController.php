@@ -40,8 +40,6 @@ class RegistrationController extends Controller
 
             $user = new Users;
 
-            // $user->name         = $request->name;
-            // $user->phone        = $request->mobile;
             $user->email        = $request->email;
             $user->otp          = $otp;
             $user->password     = app('hash')->make('123456');
@@ -68,6 +66,47 @@ class RegistrationController extends Controller
     	{    	    
     		return 0;
     	}
+    }
+
+    public function get_otp_sms(Request $request)
+    {
+        if($_POST)
+        {
+            $mobile   = $request->mobile;
+
+
+            $otp = mt_rand(100000, 999999);
+
+
+            $user = Users::where('phone', '=', $mobile)->first();
+
+            if($user)
+            {
+                return 'mobile number already exist.';
+            }
+            else
+            {
+
+                $user = new Users;
+
+                $user->phone       = $request->mobile;
+                $user->email       = 'null';
+                $user->otp          = $otp;
+                $user->password     = app('hash')->make('123456');
+
+                // dd($user);
+
+
+                $user->save();
+
+                return $user;
+
+            }
+        }
+        else
+        {           
+            return 0;
+        }
     }
 
     public function check_otp(Request $request)

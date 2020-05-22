@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('user/login','api\users\LoginController@index');
 Route::post('user/registration/get-otp','api\users\RegistrationController@get_otp');
+Route::post('user/registration/get-otp-sms','api\users\RegistrationController@get_otp_sms');
 Route::post('user/registration/check-otp','api\users\RegistrationController@check_otp');
 
 Route::get('user/dashboard/personal-info/{id}','api\users\DashboardController@personal_info');

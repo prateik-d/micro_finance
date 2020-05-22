@@ -70,5 +70,8 @@ Route::group(['prefix' => 'admin'], function ($router) {
 	Route::get('edit-loan-term-days/{id}', 'Admin\LoanTermsController@edit');
 	Route::post('edit-loan-term-days/', 'Admin\LoanTermsController@update');
 
+	Route::get('subscription-membership/', 'Admin\SubscriptionMembershipController@show');
+	
+	Route::get('loan-inforation/', 'Admin\LoanController@show');
 
 });
